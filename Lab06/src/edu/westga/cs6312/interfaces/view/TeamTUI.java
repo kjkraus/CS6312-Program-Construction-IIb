@@ -72,7 +72,7 @@ public class TeamTUI {
 	}
     
     /**
-     * Helper method to add an animal to the list
+     * Helper method to add a team to the list
      */
     public void addTeam() {
         System.out.println();

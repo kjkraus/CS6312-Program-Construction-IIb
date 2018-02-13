@@ -104,9 +104,9 @@ public class Team implements Describable, Comparable<Team> {
        	    return -1;
        	} else if ((this.getWinningPercentage() < otherTeam.getWinningPercentage())) {
        	    return 1;
-       	} else if (this.getWinningPercentage() == otherTeam.getWinningPercentage() && this.numberOfWins > otherTeam.numberOfWins) {
+       	} else if ((this.getWinningPercentage().equals(otherTeam.getWinningPercentage())) && (this.numberOfWins > otherTeam.numberOfWins)) {
        	    return -1;
-       	} else if (this.getWinningPercentage() == otherTeam.getWinningPercentage() && this.numberOfWins < otherTeam.numberOfWins) {
+       	} else if ((this.getWinningPercentage().equals(otherTeam.getWinningPercentage())) && (this.numberOfWins < otherTeam.numberOfWins)) {
        	    return 1;
        	} else {
        	    return 0;
