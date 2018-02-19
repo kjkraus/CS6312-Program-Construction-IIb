@@ -19,7 +19,7 @@ public class TreasureDriver {
      */
     public static void main(String[] args) {
         GameBoard nextMap = new GameBoard();
-        TeamTUI demoTextInterface = new TeamTUI(nextMap);
+        TreasureTUI demoTextInterface = new TreasureTUI(nextMap);
         demoTextInterface.run();
 
     }
