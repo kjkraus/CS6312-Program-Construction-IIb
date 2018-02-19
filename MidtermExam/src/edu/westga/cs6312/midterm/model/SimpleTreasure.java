@@ -7,7 +7,7 @@ package edu.westga.cs6312.midterm.model;
  * @author Kent Kraus
  * @version 2018-02-18
  */
-public abstract class SimpleTreasure extends TreasureChest {
+public class SimpleTreasure extends TreasureChest {
     
     /**
      * 0-parameter constructor to create a simple treasure chest with 75 money units
