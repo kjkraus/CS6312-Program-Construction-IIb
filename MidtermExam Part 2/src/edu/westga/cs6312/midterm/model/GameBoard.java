@@ -72,7 +72,10 @@ public class GameBoard {
      *   room, this will move the player to the farthest left room (simulates a world that 'wraps')
      */
     public void moveRight() {
-	
+        this.playerLocation++;
+        if (this.playerLocation > 9) {
+            this.playerLocation = 0;
+       	}
     }
     
     /**
@@ -80,7 +83,10 @@ public class GameBoard {
      *   room, this will move the player to the farthest right room (simulates a world that 'wraps')
      */
     public void moveLeft() {
-	
+        this.playerLocation--;
+        if (this.playerLocation < 0) {
+            this.playerLocation = 9;
+        }
     }
     
 }

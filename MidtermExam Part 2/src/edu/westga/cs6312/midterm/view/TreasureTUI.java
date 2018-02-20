@@ -16,7 +16,7 @@ public class TreasureTUI {
     /**
      * 1-parameter constructor to create the TreasureTUI object
      * 
-     * @param	currentGameboard	a gameboard that will keep track of the current game
+     * @param	currentGameboard	a game board that will keep track of the current game
      */
     public TreasureTUI(GameBoard currentGameboard) {
         this.currentGameboard = currentGameboard;
@@ -77,7 +77,19 @@ public class TreasureTUI {
      *   input, moves the player one room in that direction
      */
     private void move() {
-	
+        System.out.println("\t\t1 - Left");
+        System.out.println("\t\t2 - Right");
+        System.out.println();
+        int choice = this.getUserInt("Please enter the direction");
+        if (choice == 1) {
+            this.currentGameboard.moveLeft();
+            this.describePlayerAfterMove();
+        } else if (choice == 2) {
+            this.currentGameboard.moveRight();
+            this.describePlayerAfterMove();
+        } else {            
+            System.out.println("\tThat is not a valid direction.");
+        }
     }
     
     /**
@@ -93,6 +105,14 @@ public class TreasureTUI {
      */
     public void describePlayer() {
         System.out.println("\t" + this.currentGameboard.getPlayer().toString());
+    }
+    
+    /**
+     * Helper method to describe the player after a room move
+     */
+    public void describePlayerAfterMove() {
+        System.out.println("\tThe player is now in " + this.currentGameboard.getCurrentRoom().getLocation().toString() 
+            + this.currentGameboard.getCurrentRoom().getTreasure().toString());
     }
     
     /**
