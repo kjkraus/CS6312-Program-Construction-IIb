@@ -28,7 +28,7 @@ public class ScoreManager {
      */
     public void setName(String testName) {
         if (testName == null || testName.length() < 2) {
-            throw new IllegalArgumentException("Name must be at least 2 characters. Please try again.");
+            throw new IllegalArgumentException("Name must be at least 2 characters. ");
         }
         this.testName = testName;
     }
@@ -42,7 +42,7 @@ public class ScoreManager {
      */
     public void addScore(Integer grade) {
         if (grade == null || grade < 0 || grade > 100) {
-            throw new IllegalArgumentException("Test scores must be an integer (0 - 100). Please try again.");
+            throw new IllegalArgumentException("Test scores must be an integer (0 - 100). ");
         }
 	    this.testScores.add(grade);
 	}

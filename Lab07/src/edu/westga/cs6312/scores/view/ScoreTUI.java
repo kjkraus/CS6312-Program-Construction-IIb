@@ -46,7 +46,7 @@ public class ScoreTUI {
                 this.currentTestScores.setName(enteredTestName);
                 isValid = true;
             } catch (IllegalArgumentException iae) {
-               	System.out.println("\t" + iae.getMessage());
+               	System.out.println("\t" + iae.getMessage() + "Please try again.");
             }            
         } while (!isValid);
     }
@@ -93,9 +93,10 @@ public class ScoreTUI {
                	this.currentTestScores.addScore(score);
                 isValid = true;
             } catch (IllegalArgumentException iae) {
-               	System.out.println("\t" + iae.getMessage());
+               	System.out.println("\t" + iae.getMessage() + "Please try again.");
             }            
         } while (!isValid);
+        System.out.println("\tThe score was successfully added.");
     }
     
     /**
@@ -121,9 +122,12 @@ public class ScoreTUI {
                 String enteredChoice = this.input.nextLine();
                 userSelection = Integer.parseInt(enteredChoice);
                 isValid = true;
+            } catch (NumberFormatException nfe) {
+            	System.out.println("\tThat is not a whole number. Please try again.");
+            	System.out.println();
             } catch (IllegalArgumentException iae) {
-       			System.out.println("\tThat is not a valid integer. Please try again.");
-       			System.out.println();
+            	System.out.println("\tThat is not a non-negative integer. Please try again.");
+            	System.out.println();
             }
         } while (!isValid);
         return userSelection;
