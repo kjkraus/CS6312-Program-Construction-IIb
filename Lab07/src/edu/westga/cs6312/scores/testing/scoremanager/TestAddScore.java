@@ -9,13 +9,15 @@ import edu.westga.cs6312.scores.model.ScoreManager;
 class TestAddScore {
 
     /**
-     * Test to see if addScore returns a value of 100
+     * Test to see if addScore returns a value of 55
      */
     @Test
-    void testAddScoreReturnsAValueOf100() {
+    void testAddScoreReturnsAValueOf55() {
         ScoreManager theScoreManager = new ScoreManager();
-        theScoreManager.addScore(100);
-        assertEquals("	There are no test scores recorded.", theScoreManager.toString());
+        theScoreManager.setName("ABC");
+        theScoreManager.addScore(0);
+        assertEquals("ABC's scores are:\r\n" 
+        	+  "		0", theScoreManager.toString());
     }
 
 }

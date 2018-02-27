@@ -27,16 +27,23 @@ public class ScoreManager {
      * 			must contain at least 2 characters
      */
     public void setName(String testName) {
+        if (testName == null || testName.length() < 2) {
+            throw new IllegalArgumentException("Name must be at least 2 characters. Please try again.");
+        }
         this.testName = testName;
     }
     
     /**
      * Accepts a test score to be added to the collection
      * 
-     * @param	grade	score to be added to the collection
+     * @param		grade	score to be added to the collection
+     * @precondition	grade	!=null
+     * 				0 <= grade <= 100
      */
-    public void addScore(int grade) {
-
+    public void addScore(Integer grade) {
+        if (grade == null || grade < 0 || grade > 100) {
+            throw new IllegalArgumentException("Test scores must be an integer (0 - 100). Please try again.");
+        }
 	    this.testScores.add(grade);
 	}
 
@@ -48,11 +55,13 @@ public class ScoreManager {
      */
     public String toString() {
         if (this.testScores.isEmpty()) {
-            return "\tThere are no test scores recorded.";
+            String result = this.testName + "'s scores are:";
+            result += "\n\tThere are no test scores recorded.";
+            return result;
         }
         String result = this.testName + "'s scores are:";
-        for (int score : this.testScores) {
-            result += this.testScores.get(score) + "\n";
+        for (int counter = 0; counter < this.testScores.size(); counter++) {
+            result += "\n\t\t" + this.testScores.get(counter);
         }
         return result;
     }
