@@ -19,6 +19,9 @@ public class ScoreTUI {
      * @param	currentTestScores	a score manager that will keep track of test scores
      */
     public ScoreTUI(ScoreManager currentTestScores) {
+        if (currentTestScores == null) {
+            throw new NullPointerException("The ScoreManager object cannot be null.");
+        }
         this.input = new Scanner(System.in);
         this.currentTestScores = currentTestScores;	
     }

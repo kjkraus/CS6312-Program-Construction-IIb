@@ -14,7 +14,7 @@ class TestCreateScoreManager {
     @Test
     void test0ParameterConstructorCreatesScoreManager() {
         ScoreManager theScoreManager = new ScoreManager();
-        assertEquals("	null's scores are:\r\n" 
+        assertEquals("null's scores are:\n" 
         	+ "	There are no test scores recorded.", theScoreManager.toString());
 	
     }

@@ -65,4 +65,24 @@ public class ScoreManager {
         }
         return result;
     }
+    
+    /**
+     * Accessor for the name of the test set
+     * 
+     * @return the test name
+     */
+    public String getTestName() {
+        return this.testName;
+    }
+    
+    /**
+     * Accessor for the score of a test
+     * 
+     * @param index  the index of the test score
+     * @return the test score
+     */
+    public Integer getTestScore(int index) {
+        return this.testScores.get(index);
+    }
+    
 }	
