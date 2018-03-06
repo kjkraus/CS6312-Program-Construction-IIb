@@ -17,8 +17,17 @@ public class Team {
      * @param name	The name of the team
      * @param wins	The number of team wins
      * @param losses	The number of team losses
+     * @precondition	teamName != null
+     * @precondition	wins or losses cannot be less than 0
      */
     public Team(String name, int wins, int losses) {
+        if (name == null) {
+            throw new IllegalArgumentException("Team name cannot be null. ");
+        }
+        if (wins < 0 || losses < 0) {
+            
+            throw new IllegalArgumentException("Wins or losses cannot be less than 0. ");
+        }
         this.teamName = name;
         this.numberOfWins = wins;
         this.numberOfLosses = losses;		

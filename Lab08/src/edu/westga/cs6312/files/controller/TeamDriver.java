@@ -1,5 +1,6 @@
 package edu.westga.cs6312.files.controller;
 
+import edu.westga.cs6312.files.model.TeamManager;
 import edu.westga.cs6312.files.view.TeamTUI;
 
 /**
@@ -17,7 +18,8 @@ public class TeamDriver {
      * @param args	Command-line arguments, not used
      */
     public static void main(String[] args) {
-        TeamTUI demoTextInterface = new TeamTUI();
+        TeamManager currentTeams = new TeamManager();
+        TeamTUI demoTextInterface = new TeamTUI(currentTeams);
         demoTextInterface.run();
     }
 }

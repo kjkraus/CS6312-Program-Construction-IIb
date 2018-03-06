@@ -16,10 +16,15 @@ public class TeamTUI {
     
     /**
      * 1-parameter constructor to create a TeamTUI object
+     * 
+     * @param currentTeams	a collection of teams
      */
-    public TeamTUI() {
+    public TeamTUI(TeamManager currentTeams) {
+        if (currentTeams == null) {
+            throw new IllegalArgumentException("The TeamManager object cannot be null. ");
+        }
         this.input = new Scanner(System.in);
-        this.collectionOfTeams = new TeamManager();
+        this.collectionOfTeams = currentTeams;
     }
     
     /**
