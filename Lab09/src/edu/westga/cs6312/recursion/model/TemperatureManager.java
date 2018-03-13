@@ -25,9 +25,6 @@ public class TemperatureManager {
      * @param  currentTemperature	a temperature to be added to the temperature manager
      */
     public void addTemperature(int currentTemperature) {
-        if (currentTemperature == null) {
-            throw new IllegalArgumentException("Temperature cannot be null. ");
-        }
     	this.listOfTemperatures.add(currentTemperature);
     }
     
@@ -37,6 +34,57 @@ public class TemperatureManager {
      * @return	the the original temperatures in the order they were added
      */
     public String toString() {
+        if (this.listOfTemperatures.isEmpty()) {
+            String result = "\n\tThere are no temperatures recorded.";
+            return result;
+        }
+        String result = "";
+        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
+            result += this.listOfTemperatures.get(counter) + " ";
+        }
+        return result;
+    }
+    
+    /**
+     * Uses looping structure to go through the list and build the value to be returned
+     * 
+     * @return	the the original temperatures in the reverse order that they were added
+     */
+    public String reverseLoop() {
+        if (this.listOfTemperatures.isEmpty()) {
+            String result = "\n\tThere are no temperatures recorded.";
+            return result;
+        }
+        String result = "";
+        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
+            result += " " + this.listOfTemperatures.get(counter);
+        }
+        return result;
+    }
+    
+    /**
+     * Returns the results of calling the recursive helper method, reverseHelper
+     * 
+     * @return	the results from the recursive method
+     */
+    public String reverseRecursion() {
+        if (this.listOfTemperatures.isEmpty()) {
+            String result = "\n\tThere are no temperatures recorded.";
+            return result;
+        }
+        String result = "";
+        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
+            result += " " + this.listOfTemperatures.get(counter);
+        }
+        return result;
+    }
+    
+    /**
+     * Recursive method that calls upon itself to build the string of reversed temperatures
+     * 
+     * @return	the the original temperatures in the order they were added
+     */
+    private String reverseHelper() {
         if (this.listOfTemperatures.isEmpty()) {
             String result = "\n\tThere are no temperatures recorded.";
             return result;
