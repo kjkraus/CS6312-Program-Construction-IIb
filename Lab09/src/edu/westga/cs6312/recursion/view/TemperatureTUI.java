@@ -2,7 +2,6 @@ package edu.westga.cs6312.recursion.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import edu.westga.cs6312.recursion.model.TemperatureManager;
 
@@ -100,7 +99,7 @@ public class TemperatureTUI {
     }
     
     /**
-     * Helper method to add teams from a file
+     * Helper method to add temperatures from a file
      */
     public void addTemperaturesFromFile() {
     	
@@ -109,24 +108,24 @@ public class TemperatureTUI {
         File myFile = new File(fileName);
         Scanner inFile = null;
         boolean isValid = false;
- 
+        
         try {
             inFile = new Scanner(myFile);
             while (inFile.hasNext()) {
                 String input = inFile.nextLine();
-                int nextTemperature = Integer.parseInt(input);
-                System.out.println("\tRead temperature: " + input);	    
-                do {
-                    this.collectionOfTemperatures.addTemperature(nextTemperature);
-                    isValid = true;
-                }  while (!isValid);
-            }  
+                try {
+                    int nextTemperature = Integer.parseInt(input);
+                    System.out.println("\tRead temperature: " + input);	    
+                    do {
+                        this.collectionOfTemperatures.addTemperature(nextTemperature);
+                        isValid = true;
+                    }  while (!isValid);
+                } catch (IllegalArgumentException iae) { }
+            }
             inFile.close();
         } catch (FileNotFoundException fnfe) {
             System.out.println("\n\tFile not found. Returning to main menu.");
         } catch (NumberFormatException nfe) {
-            System.out.println("\n\tOne of the entries is not an integer value for temperature.");
-        } catch (NoSuchElementException nsee) {
             System.out.println("\n\tRead past the end of the file.");
             inFile.close();
         }
@@ -138,13 +137,8 @@ public class TemperatureTUI {
      */
     public void displayOriginalTemperatures() {
         System.out.println();
-                    	
-        if (this.collectionOfTemperatures.toString().equals("")) {
-            System.out.println("\tThere are no temperatures in the list.");
-        } else {
-         	System.out.println("\tThe original temperatures are: ");
-           	System.out.println("\t" + this.collectionOfTemperatures.toString());
-        }        
+      	System.out.println("\tThe original temperatures are: ");
+       	System.out.println("\t" + this.collectionOfTemperatures.toString());        
     }
     
     /**
@@ -152,13 +146,8 @@ public class TemperatureTUI {
      */
     public void displayLoopReversedTemperatures() {
         System.out.println();
-                    	
-        if (this.collectionOfTemperatures.toString().equals("")) {
-            System.out.println("\tThere are no temperatures in the list.");
-        } else {
-         	System.out.println("\tThe loop-reversed temperatures are: ");
-           	System.out.println("\t" + this.collectionOfTemperatures.toString());
-        }        
+      	System.out.println("\tThe loop-reversed temperatures are: ");
+       	System.out.println("\t" + this.collectionOfTemperatures.reverseLoop());        
     }
     
     /**
@@ -166,13 +155,8 @@ public class TemperatureTUI {
      */
     public void displayRecursiveReversedTemperatures() {
         System.out.println();
-                    	
-        if (this.collectionOfTemperatures.toString().equals("")) {
-            System.out.println("\tThere are no temperatures in the list.");
-        } else {
-         	System.out.println("\tThe recursive-reversed temperatures are: ");
-           	System.out.println("\t" + this.collectionOfTemperatures.toString());
-        }        
+     	System.out.println("\tThe recursive-reversed temperatures are: ");
+      	System.out.println("\t" + this.collectionOfTemperatures.reverseRecursion());      
     }
 }
 

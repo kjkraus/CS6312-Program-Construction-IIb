@@ -56,8 +56,8 @@ public class TemperatureManager {
             return result;
         }
         String result = "";
-        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
-            result += " " + this.listOfTemperatures.get(counter);
+        for (int counter = this.listOfTemperatures.size(); counter > 0; counter--) {
+            result += this.listOfTemperatures.get(counter - 1) + " ";
         }
         return result;
     }
@@ -72,26 +72,25 @@ public class TemperatureManager {
             String result = "\n\tThere are no temperatures recorded.";
             return result;
         }
-        String result = "";
-        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
-            result += " " + this.listOfTemperatures.get(counter);
-        }
-        return result;
+        return this.reverseHelper(this.listOfTemperatures.size() - 1);
     }
     
     /**
      * Recursive method that calls upon itself to build the string of reversed temperatures
      * 
+     * @param 	index	the starting point (index of the end of the list to reverse)
      * @return	the the original temperatures in the order they were added
      */
-    private String reverseHelper() {
+    private String reverseHelper(int index) {
         if (this.listOfTemperatures.isEmpty()) {
             String result = "\n\tThere are no temperatures recorded.";
             return result;
         }
         String result = "";
-        for (int counter = 0; counter < this.listOfTemperatures.size(); counter++) {
-            result += " " + this.listOfTemperatures.get(counter);
+        if (index == 0) {
+            result += this.listOfTemperatures.get(0);
+        } else {
+            result += this.listOfTemperatures.get(index) + " " + this.reverseHelper(index - 1);
         }
         return result;
     }
