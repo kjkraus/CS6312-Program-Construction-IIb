@@ -11,7 +11,7 @@ class TestGetMaximumTemperature {
      */
     @Test
     void testGetaximumTemperatureReturnsNinetyFive() {
-        Thermometer theThermometer = new Thermometer(0, 95, 32);
+        Thermometer theThermometer = new Thermometer(0, 32, 95);
         assertEquals("95", theThermometer.getMaximumTemperature().toString());
     }
     
@@ -20,7 +20,7 @@ class TestGetMaximumTemperature {
      */
     @Test
     void testGetMaximumTemperatureReturnsFive() {
-        Thermometer theThermometer = new Thermometer(-10, 5, -2);
+        Thermometer theThermometer = new Thermometer(-10, -2, 5);
         assertEquals("5", theThermometer.getMaximumTemperature().toString());
     }
     
@@ -29,7 +29,7 @@ class TestGetMaximumTemperature {
      */
     @Test
     void testGetMaximumTemperatureReturnsOneThousand() {
-        Thermometer theThermometer = new Thermometer(1, 1000, 99);
+        Thermometer theThermometer = new Thermometer(1, 99, 1000);
         assertEquals("1000", theThermometer.getMaximumTemperature().toString());
     }
 

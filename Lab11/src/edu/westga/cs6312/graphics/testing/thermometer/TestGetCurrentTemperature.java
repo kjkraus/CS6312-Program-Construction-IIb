@@ -11,7 +11,7 @@ class TestGetCurrentTemperature {
      */
     @Test
     void testGetCurrentTemperatureReturnsNinetyFive() {
-        Thermometer theThermometer = new Thermometer(0, 0, 95);
+        Thermometer theThermometer = new Thermometer(0, 95, 200);
         assertEquals("95", theThermometer.getCurrentTemperature().toString());
     }
     
@@ -20,7 +20,7 @@ class TestGetCurrentTemperature {
      */
     @Test
     void testGetCurrentTemperatureReturnsNegativeOneNinetyNine() {
-        Thermometer theThermometer = new Thermometer(-10, 5, -199);
+        Thermometer theThermometer = new Thermometer(-10, -199, 500);
         assertEquals("-199", theThermometer.getCurrentTemperature().toString());
     }
     
@@ -29,7 +29,7 @@ class TestGetCurrentTemperature {
      */
     @Test
     void testGetCurrentTemperatureReturnsTwoThousand() {
-        Thermometer theThermometer = new Thermometer(1, 1, 2000);
+        Thermometer theThermometer = new Thermometer(1, 2000, 9000);
         assertEquals("2000", theThermometer.getCurrentTemperature().toString());
     }
 }

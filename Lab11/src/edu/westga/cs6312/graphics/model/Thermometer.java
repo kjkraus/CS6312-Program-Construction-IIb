@@ -18,10 +18,11 @@ public class Thermometer {
 	 * @param maxTemp	a maximum temperature
 	 * @param currentTemp 	a current temperature
 	 */
-	public Thermometer(int minTemp, int maxTemp, int currentTemp) {
+	public Thermometer(int minTemp, int currentTemp, int maxTemp) {
 	    this.minimumTemperature = minTemp;
-	    this.maximumTemperature = maxTemp;
 	    this.currentTemperature = currentTemp;
+	    this.maximumTemperature = maxTemp;
+	    
 	}
 	
 	/**
@@ -58,8 +59,8 @@ public class Thermometer {
 	 */
 	public String toString() {
 	    String result = "";
-	    result = this.getMinimumTemperature() + " " + this.getMaximumTemperature()
-	    	+ " " + this.getCurrentTemperature();
+	    result = this.getMinimumTemperature() + " " + this.getCurrentTemperature()
+	    	+ " " + this.getMaximumTemperature();
 	    return result;
 	}
 
