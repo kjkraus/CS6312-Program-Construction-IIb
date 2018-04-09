@@ -1,6 +1,8 @@
 package edu.westga.cs6312.events.view;
 
 import edu.westga.cs6312.events.model.Regulator;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -38,7 +40,6 @@ public class RegulatorPane extends GridPane {
     public void setRegulatorPaneProperties() {
         setAlignment(Pos.CENTER);
         setPadding(new Insets(5, 5, 5, 5));
-        add(new TextField(), 1, 0);
         setHgap(3.5);
         setVgap(1.5);
     }
@@ -49,8 +50,9 @@ public class RegulatorPane extends GridPane {
     public void getStartingValueComponents() {
         add(new Label("Starting value: "), 0, 0);
         add(new TextField(), 1, 0);
-        Button setButton = new Button("Set");
+        Button setButton = new Button("Set");    
         add(setButton, 2, 0);
+        setButton.setOnAction(new SetHandler());
     }
     
     /**
@@ -62,5 +64,71 @@ public class RegulatorPane extends GridPane {
         add(incrementButton, 1, 2);
         add(decrementButton, 1, 3);
         add(new Label("Current value: " + this.demoRegulator.getCurrentRegulatorSetting()), 2, 2);
+        incrementButton.setOnAction(new IncrementHandler());
+        decrementButton.setOnAction(new DecrementHandler());
     }
+    
+    /**
+     * Handler class to create a handler object for the Set button
+     * 
+     * @author Kent Kraus
+     * @version 2018-04-08
+     */
+    private class SetHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent setEvent) {
+            RegulatorPane.set();
+        }
+	
+    }
+    
+    /**
+     * Handler class to create a handler object for the Increment button
+     * 
+     * @author Kent Kraus
+     * @version 2018-04-08
+     */
+    private class IncrementHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent incrementEvent) {
+            RegulatorPane.increment();
+        }
+	
+    }
+    
+    /**
+     * Handler class to create a handler object for the Decrement button
+     * 
+     * @author Kent Kraus
+     * @version 2018-04-08
+     */
+    private class DecrementHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent decrementEvent) {
+            RegulatorPane.decrement();
+        }
+	
+    }
+    
+    /**
+     * Event helper method to set the regulator value
+     */
+    public static void set() {
+        System.out.println("Set was clicked");
+    }
+    
+    /**
+     * EVent helper method to increment the regulator value
+     */
+    public static void increment() {
+        System.out.println("Increment was clicked");
+    }
+    
+    /**
+     * Event helper method to decrement the regulator value
+     */
+    public static void decrement() {
+        System.out.println("Decrement was clicked");
+    }
+    
 }
