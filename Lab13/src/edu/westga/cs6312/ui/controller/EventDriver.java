@@ -1,6 +1,6 @@
 package edu.westga.cs6312.ui.controller;
 
-import edu.westga.cs6312.ui.model.Font;
+import edu.westga.cs6312.ui.model.FontRegulator;
 import edu.westga.cs6312.ui.view.FontPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,7 +25,7 @@ public class EventDriver extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        Font demoFont = new Font("Consolas", 24, "I love JavaFX");
+        FontRegulator demoFont = new FontRegulator("Consolas", 24, "I love JavaFX");
         FontPane demoGUI = new FontPane(demoFont);
         Scene fontScene = new Scene(demoGUI, 800, 800);
         primaryStage.setTitle("CS6312 - Lab 13");

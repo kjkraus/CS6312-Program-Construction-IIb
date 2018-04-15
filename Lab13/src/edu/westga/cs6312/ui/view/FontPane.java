@@ -1,6 +1,6 @@
 package edu.westga.cs6312.ui.view;
 
-import edu.westga.cs6312.ui.model.Font;
+import edu.westga.cs6312.ui.model.FontRegulator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -23,7 +23,7 @@ import javafx.scene.text.Text;
  * @version 2018-04-18
  */
 public class FontPane extends GridPane {
-    private Font demoFont;
+    private FontRegulator demoFont;
     private String[] fontNames = {"Arial", "Consolas", "FreeStyle Script", "System Bold"};
     private String[] phraseTexts = {"I love JavaFx", "I can't wait for Summer", "Go Wolves"};
     private Text selectedText;
@@ -34,7 +34,7 @@ public class FontPane extends GridPane {
      * 
      * @param	givenFont	Font with the data for the drawing
      */
-    public FontPane(Font givenFont) {
+    public FontPane(FontRegulator givenFont) {
         this.demoFont = givenFont;
         this.setFontPaneProperties();
         this.getListViewComponents();
