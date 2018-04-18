@@ -1,5 +1,7 @@
 package edu.westga.cs6312.ui.view;
 
+import javafx.scene.text.Font;
+
 import edu.westga.cs6312.ui.model.FontRegulator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,11 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * This class will manage the code that draws the Font GUI
@@ -24,10 +24,9 @@ import javafx.scene.text.Text;
  */
 public class FontPane extends GridPane {
     private FontRegulator demoFont;
-    private String[] fontNames = {"Arial", "Consolas", "FreeStyle Script", "System Bold"};
+    private String[] fontNames = {"Arial", "Consolas", "Papyrus", "Times New Roman"};
     private String[] phraseTexts = {"I love JavaFx", "I can't wait for Summer", "Go Wolves"};
-    private Text selectedText;
-    private String selectedFontName;
+    private Label mainDisplayText;
     
     /**
      * 1-parameter constructor  that accepts a Font
@@ -56,14 +55,17 @@ public class FontPane extends GridPane {
      * Helper method to bring ListView components to the user interface
      */
     private void getListViewComponents() {
-        //VBox verticalGroup = new VBox();
-        //verticalGroup.setMaxWidth(100);
-        //add(new Label("Font: "), 0, 0);
+        add(new Label("Font: "), 0, 0);
         ListView<String> theListView = new ListView<>(FXCollections.observableArrayList(this.fontNames));
         theListView.setPrefSize(200, 200);
         theListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         theListView.getSelectionModel().select(0);
-        add(theListView, 0, 0);
+        add(theListView, 0, 1);
+        
+        theListView.getSelectionModel().selectedItemProperty().addListener(ov -> {
+            this.demoFont.setFontName(theListView.getSelectionModel().getSelectedItem());
+            this.mainDisplayText.setFont(new Font(this.demoFont.getFontName(), (int) this.demoFont.getFontSize()));
+        });
         
     }
     
@@ -71,38 +73,53 @@ public class FontPane extends GridPane {
      * Helper method to bring ComboBox components to the user interface
      */
     private void getComboBoxComponents() {
-        //add(new Label("Text: "), 1, 0);
+        add(new Label("Text: "), 2, 0);
         ComboBox<String> theComboBox = new ComboBox<>();
-        theComboBox.setPrefWidth(200);
         theComboBox.setValue("I love JavaFX");
-        add(theComboBox, 2, 0);
-    	
+        add(theComboBox, 2, 1);
         ObservableList<String> comboBoxItems = FXCollections.observableArrayList(this.phraseTexts);
         theComboBox.getItems().addAll(comboBoxItems);
-       
+        
+        this.demoFont.setFontPhrase(this.phraseTexts[0]);
+        System.out.println(this.demoFont.getFontPhrase());
+        
+        theComboBox.getSelectionModel().selectedItemProperty().addListener(ov -> {
+            this.demoFont.setFontPhrase(theComboBox.getSelectionModel().getSelectedItem());
+            this.mainDisplayText.setText(this.demoFont.getFontPhrase());
+        });       
     }
     
     /**
      * Helper method to bring Slider components to the user interface
      */
     private void getSliderComponents() {
+        this.demoFont.setFontName(this.fontNames[0]);
+        this.demoFont.setFontPhrase(this.phraseTexts[0]);
+        this.demoFont.setFontSize(24);
+        
+        this.mainDisplayText = new Label(this.demoFont.getFontPhrase());
+        this.mainDisplayText.setFont(new Font(this.demoFont.getFontName(), (int) this.demoFont.getFontSize()));
+        
+        add(this.mainDisplayText, 0, 5);
+	
         Slider sliderHorizontal = new Slider();
+
         sliderHorizontal.setShowTickLabels(true);
         sliderHorizontal.setShowTickMarks(true);
-        add(sliderHorizontal, 0, 4);
+        sliderHorizontal.setValue(24);
+        sliderHorizontal.setMin(10);
+        sliderHorizontal.setMax(48);
+        sliderHorizontal.setMajorTickUnit(10);
+        sliderHorizontal.setMinorTickCount(4);
         
-        this.selectedText = new Text(10, 50, "I love JavaFX");
         add(new Label("Font Size: "), 0, 3);
-        add(this.selectedText, 2, 5);
-        //Pane paneForText = new Pane();
-        //paneForText.getChildren().add(this.selectedText);
-        
-        //BorderPane textAndSliderPane = new BorderPane();
-        //textAndSliderPane.setCenter(paneForText);
-        //textAndSliderPane.setBottom(sliderHorizontal);
-        
-        //sliderHorizontal.valueProperty().addListener(ov ->
-        //	this.selectedText.setFont(sliderHorizontal.getValue()));
+        add(sliderHorizontal, 0, 4);
+
+        sliderHorizontal.valueProperty().addListener(ov -> {
+    		this.demoFont.setFontSize((int) sliderHorizontal.getValue());
+    		this.mainDisplayText.setFont(new Font(this.demoFont.getFontName(), (int) this.demoFont.getFontSize()));
+    	});        
+
     }
-    
+    	
 }
