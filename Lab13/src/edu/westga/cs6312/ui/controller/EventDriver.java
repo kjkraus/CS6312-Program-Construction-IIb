@@ -27,7 +27,7 @@ public class EventDriver extends Application {
     public void start(Stage primaryStage) {
         FontRegulator demoFont = new FontRegulator("Arial", 10, "I love JavaFX");
         FontPane demoGUI = new FontPane(demoFont);
-        Scene fontScene = new Scene(demoGUI, 800, 800);
+        Scene fontScene = new Scene(demoGUI, 800, 600);
         primaryStage.setTitle("CS6312 - Lab 13");
         primaryStage.setScene(fontScene);
         primaryStage.show();

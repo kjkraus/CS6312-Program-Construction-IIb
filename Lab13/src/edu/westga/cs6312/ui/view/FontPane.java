@@ -13,14 +13,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * This class will manage the code that draws the Font GUI
  * 
  * @author Kent Kraus
- * @version 2018-04-18
+ * @version 2018-04-17
  */
 public class FontPane extends GridPane {
     private FontRegulator demoFont;
@@ -73,15 +71,15 @@ public class FontPane extends GridPane {
      * Helper method to bring ComboBox components to the user interface
      */
     private void getComboBoxComponents() {
-        add(new Label("Text: "), 2, 0);
+        add(new Label("Text: "), 1, 0);
         ComboBox<String> theComboBox = new ComboBox<>();
         theComboBox.setValue("I love JavaFX");
-        add(theComboBox, 2, 1);
+        
+        add(theComboBox, 1, 1);
         ObservableList<String> comboBoxItems = FXCollections.observableArrayList(this.phraseTexts);
         theComboBox.getItems().addAll(comboBoxItems);
         
         this.demoFont.setFontPhrase(this.phraseTexts[0]);
-        System.out.println(this.demoFont.getFontPhrase());
         
         theComboBox.getSelectionModel().selectedItemProperty().addListener(ov -> {
             this.demoFont.setFontPhrase(theComboBox.getSelectionModel().getSelectedItem());
@@ -99,7 +97,6 @@ public class FontPane extends GridPane {
         
         this.mainDisplayText = new Label(this.demoFont.getFontPhrase());
         this.mainDisplayText.setFont(new Font(this.demoFont.getFontName(), (int) this.demoFont.getFontSize()));
-        
         add(this.mainDisplayText, 0, 5);
 	
         Slider sliderHorizontal = new Slider();
@@ -119,7 +116,5 @@ public class FontPane extends GridPane {
     		this.demoFont.setFontSize((int) sliderHorizontal.getValue());
     		this.mainDisplayText.setFont(new Font(this.demoFont.getFontName(), (int) this.demoFont.getFontSize()));
     	});        
-
     }
-    	
 }
