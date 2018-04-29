@@ -28,7 +28,7 @@ public class VersionChooser {
      */
     public void chooseVersion() {
         String fileName = this.getFileName();
-        FileInteractor.readData(fileName);
+        this.collectionOfStockData = FileInteractor.readData(fileName);
         this.runTextOption();
     }
     
@@ -44,7 +44,10 @@ public class VersionChooser {
      * This method will use the console to prompt the user for a file to be read and return the filename
      */
     private String getFileName() {
-        //add file input code here --- see StockTUI code
-        return "";
+        System.out.println("\tWelcome to the Stock Manager Application");
+        System.out.println();
+        System.out.print("\tPlease enter the filename: ");
+        String fileName = this.input.nextLine();
+        return fileName;
     }
 }
