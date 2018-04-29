@@ -13,7 +13,7 @@ class TestCreateStockRecord {
     @Test
     void test2ParameterConstructorReturns099And20180101() {
         StockRecord theStockRecord = new StockRecord("2018-01-01", 0.99);
-        assertEquals("Closed at 0.99 on 2018-01-01", theStockRecord.toString());
+        assertEquals("Closed at  $0.99 on 2018-01-01", theStockRecord.toString());
     }
     
     /**
@@ -23,7 +23,7 @@ class TestCreateStockRecord {
     @Test
     void test2ParameterConstructorReturns100001And20011212() {
         StockRecord theStockRecord = new StockRecord("2001-12-12", 1000.01);
-        assertEquals("Closed at 1000.01 on 2001-12-12", theStockRecord.toString());
+        assertEquals("Closed at  $1000.01 on 2001-12-12", theStockRecord.toString());
     }
     
     /**
@@ -33,7 +33,7 @@ class TestCreateStockRecord {
     @Test
     void test2ParameterConstructorReturns999AND19990630() {
         StockRecord theStockRecord = new StockRecord("1999-06-30", 9.99);
-        assertEquals("Closed at 9.99 on 1999-06-30", theStockRecord.toString());
+        assertEquals("Closed at  $9.99 on 1999-06-30", theStockRecord.toString());
     }
 
 }

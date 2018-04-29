@@ -32,23 +32,23 @@ public class FileInteractor {
         File myFile = new File(fileName);
         Scanner inFile = null;
         StockManager stockManagerWithData = new StockManager();
+        stockManagerWithData.setFileName(fileName);
+        
         try {
             inFile = new Scanner(myFile);
-            inFile.useDelimiter(", *");
+            inFile.nextLine();
             while (inFile.hasNext()) {
-                String recordDate = (inFile.next());
-        	//Manage comma delimited values to skip thru after closing price	    
-                double closingPrice = (inFile.nextDouble());
-                //double someValue = (inFile.nextInt());
+                String nextStockRecord = (inFile.nextLine());
+                String[] dataPointsFromStockRecord = nextStockRecord.split(",");
+                
+                String recordDate = dataPointsFromStockRecord[0];
+                double closingPrice = Double.parseDouble(dataPointsFromStockRecord[4]);
+                
                 StockRecord nextRecord = new StockRecord(recordDate, closingPrice);
                 stockManagerWithData.addRecord(nextRecord);
-                inFile.close();
-            }  
-       	    //comment this out later if working
-       	    for (StockRecord stock : stockManagerWithData.getRecords()) {
-       			System.out.println("\t" + stock.toString());		    
-       	    }
+            }
             inFile.close();
+
         } catch (FileNotFoundException fnfe) {
             System.out.println("\n\tFile not found. Try a valid file name.");
         } catch (NoSuchElementException nsee) {

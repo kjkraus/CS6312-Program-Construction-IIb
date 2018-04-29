@@ -20,9 +20,9 @@ public class StockTUI {
      * @param currentRecords	a collection of stock records
      */
     public StockTUI(StockManager currentRecords) {
-        //if (currentRecords == null) {
-        //    throw new IllegalArgumentException("The StockManager object cannot be null. ");
-        //}
+        if (currentRecords == null) {
+            throw new IllegalArgumentException("The StockManager object cannot be null. ");
+        }
         this.input = new Scanner(System.in);
         this.collectionOfRecords = currentRecords;
     }
@@ -91,18 +91,20 @@ public class StockTUI {
     }
     
     /**
-     * Helper method to display statistical data for stock records
+     * Helper method to display summary data for stock records
      */
     public void displaySummaryData() {
         System.out.println();
-        	
+        System.out.println("\t" + this.collectionOfRecords.getFileName());	
         if (this.collectionOfRecords.getRecords().isEmpty()) {
             System.out.println("\tThere are no records in the list.");
         } else {
-            //DO SOMETHING FOR First, Middle, and Last Record (Summary)
-            for (StockRecord stock : this.collectionOfRecords.getRecords()) {
-        		System.out.println("\t" + stock.toString());		    
-        	}
+            int middleIndex = (int) Math.ceil(this.collectionOfRecords.getRecords().size() / 2);
+            int lastIndex = this.collectionOfRecords.getRecords().size() - 1;
+
+            System.out.println("\tFirst Record:\t" + this.collectionOfRecords.getRecords().get(0));
+            System.out.println("\tMiddle Record:\t" + this.collectionOfRecords.getRecords().get(middleIndex));
+            System.out.println("\tLast Record:\t"  + this.collectionOfRecords.getRecords().get(lastIndex));
         }		
     }
     
@@ -111,14 +113,13 @@ public class StockTUI {
      */
     public void displayStatisticalData() {
         System.out.println();
-        	
+        System.out.println("\t" + this.collectionOfRecords.getFileName());	
         if (this.collectionOfRecords.getRecords().isEmpty()) {
             System.out.println("\tThere are no records in the list.");
         } else {
-            //DO SOMETHING FOR STATS highest, lowest, average
-            for (StockRecord stock : this.collectionOfRecords.getRecords()) {
-        		System.out.println("\t" + stock.toString());		    
-        	}
+            System.out.println("\tHighest Closing Price:\t" + (String.format("%.2f", this.collectionOfRecords.getHighestClosingPrice())));
+            System.out.println("\tLowest Closing Price:\t" + (String.format("%.2f", this.collectionOfRecords.getLowestClosingPrice())));
+            System.out.println("\tAverage Closing Price:\t"  + (String.format("%.2f", this.collectionOfRecords.getAverageClosingPrice())));
         }		
     }
     
@@ -127,11 +128,10 @@ public class StockTUI {
      */
     public void displayAllRecords() {
         System.out.println();
-        	
+        System.out.println("\t" + this.collectionOfRecords.getFileName());	
         if (this.collectionOfRecords.getRecords().isEmpty()) {
             System.out.println("\tThere are no records in the list.");
         } else {
-            //java.util.Collections.sort(this.collectionOfRecords.getRecords());  to be changed for statistics
             for (StockRecord stock : this.collectionOfRecords.getRecords()) {
         		System.out.println("\t" + stock.toString());	    
         	}

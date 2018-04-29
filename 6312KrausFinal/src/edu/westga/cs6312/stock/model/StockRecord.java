@@ -33,7 +33,7 @@ public class StockRecord {
      * @return	a description of the stock record
      */
     public String toString() {
-        return "Closed at " + this.stockClosingPrice + " on " + this.stockRecordDate;
+        return "Closed at  $" + (String.format("%.2f", this.stockClosingPrice)) + " on " + this.stockRecordDate;
     }
     
     /**

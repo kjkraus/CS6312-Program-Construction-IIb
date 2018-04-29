@@ -19,7 +19,7 @@ class TestGetRecords {
         StockManager theStockManager = new StockManager();
         theStockManager.addRecord(theStockRecord);
         theStockManager.addRecord(secondStockRecord);
-        assertEquals("[Closed at 1.99 on 2018-01-01, Closed at 9.99 on 1999-09-09]", theStockManager.getRecords().toString());
+        assertEquals("[Closed at  $1.99 on 2018-01-01, Closed at  $9.99 on 1999-09-09]", theStockManager.getRecords().toString());
     }
     
     /**
@@ -34,7 +34,7 @@ class TestGetRecords {
         StockManager theStockManager = new StockManager();
         theStockManager.addRecord(theStockRecord);
         theStockManager.addRecord(secondStockRecord);
-        assertEquals("[Closed at 101.11 on 2002-11-12, Closed at 55.55 on 1742-09-09]", theStockManager.getRecords().toString());
+        assertEquals("[Closed at  $101.11 on 2002-11-12, Closed at  $55.55 on 1742-09-09]", theStockManager.getRecords().toString());
     }
 
 }
